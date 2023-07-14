@@ -163,7 +163,7 @@ INSANE_SKIP:${PN} += "ldflags"
 # doesn't support -buildmode=pie, so skip the QA checking for mips/rv32 and its
 # variants.
 python() {
-    if 'mips' in d.getVar('TARGET_ARCH') or 'riscv32' in d.getVar('TARGET_ARCH'):
+    if 'mips' in d.getVar('TARGET_ARCH') or 'riscv32' in d.getVar('TARGET_ARCH') or 'loongarch' in d.getVar('TARGET_ARCH'):
         d.appendVar('INSANE_SKIP:%s' % d.getVar('PN'), " textrel")
     else:
         d.appendVar('GOBUILDFLAGS', ' -buildmode=pie')
