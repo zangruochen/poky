@@ -31,6 +31,7 @@ class BuildCpioTest(OESDKTestCase):
             os.makedirs(dirs["build"])
 
             self._run("sed -i -e '/char.*program_name/d' {source}/src/global.c".format(**dirs))
+            self._run("cp /home/pokybuild/config.sub {source}/build-aux/config.sub".format(**dirs))
             self._run("cd {build} && {source}/configure --disable-maintainer-mode $CONFIGURE_FLAGS".format(**dirs))
             self._run("cd {build} && make -j".format(**dirs))
             self._run("cd {build} && make install DESTDIR={install}".format(**dirs))
